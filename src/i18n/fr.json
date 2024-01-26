@@ -2,6 +2,14 @@
   "login": {
     "title": "Connexion",
     "email": "Email",
-    "password": "Mot de passe"
+    "password": "Mot de passe",
+    "buttonLabel": "Connexion",
+    "loadingMessage": "Connexion en cours..."
+  },
+  "navbar" : {
+    "menu": "Menu",
+    "settings": "Paramètres",
+    "account": "Compte",
+    "logout": "Déconnexion"
   }
 }

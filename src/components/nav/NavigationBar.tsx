@@ -5,7 +5,11 @@ import NavigationBarMenu from "@/components/nav/NavigationBarMenu";
 import {ThemeToggle} from "@/components/nav/ThemeToggle";
 import LanguagesSwitcher from "@/components/nav/LanguagesSwitcher";
 
-const NavigationBar = () => {
+type NavigationBarProps = {
+  $t: Record<string, any>
+}
+
+const NavigationBar = ({$t}: NavigationBarProps) => {
   return (
     <nav className={'fixed top-0 left-0 px-6 py-2 flex justify-between w-screen'}>
       <Link href={"/"} className={'flex items-center justify-center'}>
@@ -14,7 +18,7 @@ const NavigationBar = () => {
           <h1 className={'text-xl font-bold ml-3'}>{process.env.NEXT_PUBLIC_APP_NAME}</h1>
         </div>
       </Link>
-      <NavigationBarMenu/>
+      <NavigationBarMenu $t={$t}/>
       <div className={'flex justify-center items-center gap-2'}>
         <LanguagesSwitcher/>
         <ThemeToggle/>

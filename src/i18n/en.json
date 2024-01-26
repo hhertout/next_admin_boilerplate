@@ -2,6 +2,14 @@
   "login": {
     "title": "Login",
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "buttonLabel": "Login",
+    "loadingMessage": "Login in, please wait..."
+  },
+  "navbar" : {
+    "menu": "Menu",
+    "settings": "Settings",
+    "account": "Account",
+    "logout": "Logout"
   }
 }

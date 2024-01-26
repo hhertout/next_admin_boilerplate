@@ -1,6 +1,10 @@
 import React from 'react';
 
-const NavMenu = () => {
+type NavMenuProps = {
+  $t: Record<string, any>
+}
+
+const NavMenu = ({}: NavMenuProps) => {
   return (
     <div className={'p-4 w-[240px]'}>
       <ul className={'flex flex-col justify-center items-center'}>

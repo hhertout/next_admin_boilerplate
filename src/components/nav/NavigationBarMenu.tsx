@@ -11,17 +11,21 @@ import React, {useMemo} from "react";
 import NavigationMenuTitle from "@/components/ui/navigation-menu-title";
 import SettingsMenu from "@/components/nav/SettingsMenu";
 
-const NavigationBarMenu = () => {
+type NavigationBarMenuProps = {
+  $t: Record<string, any>
+}
+
+const NavigationBarMenu = ({$t}: NavigationBarMenuProps) => {
   const menu = useMemo(() => [
     {
-      label: "Menu",
-      subMenu: <NavMenu/>
+      label: $t.navbar.menu,
+      subMenu: <NavMenu $t={$t}/>
     },
     {
-      label: "Settings",
-      subMenu: <SettingsMenu/>
+      label: $t.navbar.settings,
+      subMenu: <SettingsMenu $t={$t}/>
     }
-  ], [])
+  ], [$t])
 
   return <NavigationMenu>
     <NavigationMenuList>

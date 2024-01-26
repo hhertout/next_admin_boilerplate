@@ -8,7 +8,11 @@ import InputGroup from "@/components/ui/input-group";
 import {useUser} from "@/hooks/useUser";
 import SpinnerIcon from "@/components/icons/SpinnerIcon";
 
-const LoginForm = () => {
+type LoginFormProps = {
+  $t: Record<string, any | Record<string, any>>
+}
+
+const LoginForm = ({$t}: LoginFormProps) => {
   const {setUser} = useUser()
   const router = useRouter()
   const [credentials, setCredentials] = useState({
@@ -33,8 +37,9 @@ const LoginForm = () => {
         headers: {'Content-Type': 'application/json'},
         credentials: 'include'
       })
+      const data = await res.json()
+
       if (res.status === 200) {
-        const data = await res.json()
         setUser({
           type: "login",
           data: {email: data.email}
@@ -45,44 +50,44 @@ const LoginForm = () => {
       } else if (res.status >= 500) {
         setError({message: "The service is temporally unavailable"})
       }
-
-      return
     } catch (err: any) {
       console.error(err)
       setError({message: "The service is temporally unavailable"})
     } finally {
       setLoading(false)
     }
+
+    return
   }
 
   if (loading) {
-    return <LoginLoading/>
+    return <LoginLoading $t={$t}/>
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <InputGroup>
-        <label htmlFor={"email"} className={'dark:text-black'}>Email</label>
         <Input
           id={"email"}
           value={credentials.email}
           onChange={handleChange}
           name={'email'}
           type={'email'}
-          placeholder={'Email'}
+          placeholder={$t.login.email}
           className={'bg-white'}
+          aria-label={$t.login.email}
         />
       </InputGroup>
       <InputGroup>
-        <label htmlFor={'password'} className={'dark:text-black'}>Password</label>
         <Input
           id={"password"}
           value={credentials.password}
           onChange={handleChange}
           name={'password'}
           type={'password'}
-          placeholder={'Password'}
+          placeholder={$t.login.password}
           className={'bg-white'}
+          aria-label={$t.login.password}
         />
       </InputGroup>
       {error && <div className={'text-sm text-red-700 text-center mt-3'}>{error.message}</div>}
@@ -91,18 +96,22 @@ const LoginForm = () => {
         variant={'outline'}
         className={"w-full text-center mt-5 bg-gray-950 text-gray-50 hover:bg-gray-700 font-bold"}
       >
-        Login
+        {$t.login.buttonLabel}
       </Button>
     </form>
   );
 };
 
-const LoginLoading = () => {
+type LoginLoadingProps = {
+  $t: Record<string, any>
+}
+
+const LoginLoading = ({$t}: LoginLoadingProps) => {
   return <div className={"w-full h-full flex flex-col justify-center items-center gap-3"}>
     <div className={"animate-spin dark:text-black"}>
       <SpinnerIcon size={24}/>
     </div>
-    <div className={'font-bold dark:text-black'}>Please wait ...</div>
+    <div className={'font-bold dark:text-black'}>{$t.login.loadingMessage}</div>
   </div>
 }
 

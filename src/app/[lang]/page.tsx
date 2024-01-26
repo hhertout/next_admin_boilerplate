@@ -7,7 +7,7 @@ import {getLocale} from "@/lib/i18n";
 import {Locale} from "../../../i18n.config";
 
 const Login = async ({params}: { params: { lang: Locale } }) => {
-  const t = await getLocale(params.lang)
+  const $t = await getLocale(params.lang)
 
   return (
     <div className={"w-screen h-screen flex justify-center items-center"}>
@@ -18,11 +18,11 @@ const Login = async ({params}: { params: { lang: Locale } }) => {
               <NextIcon size={70}/>
             </div>
             <CardTitle className={"font-extrabold text-xl dark:text-black"}>
-              {t.login.title}
+              {$t.login.title}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <LoginForm/>
+            <LoginForm $t={$t} />
           </CardContent>
         </Card>
       </Container>
