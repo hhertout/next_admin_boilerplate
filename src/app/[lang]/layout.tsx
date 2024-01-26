@@ -5,7 +5,6 @@ import {Metadata} from "next";
 import {Locale} from "../../../i18n.config";
 import Providers from "@/components/global/Providers";
 import {ReactNode} from "react";
-import {ThemeProvider} from "@/components/global/ThemeProvider";
 
 const fontSans = FontSans({
   subsets: ["latin"],

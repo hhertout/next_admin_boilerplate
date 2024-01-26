@@ -1,11 +1,9 @@
 import React from 'react';
-import LanguagesSwitcher from "@/components/nav/LanguagesSwitcher";
 import {Separator} from "@/components/ui/separator";
 import {Button} from "@/components/ui/button";
 import AccountIcon from "@/components/icons/AccountIcon";
 import {useRouter} from "next/navigation";
 import LogoutButton from "@/components/LogoutButton";
-import {ThemeToggle} from "@/components/ThemeToggle";
 
 const SettingsMenu = () => {
   return (
@@ -13,7 +11,6 @@ const SettingsMenu = () => {
       <AccountButton/>
       <LogoutButton/>
       <Separator className="my-1"/>
-      <LanguagesSwitcher/>
     </div>
   );
 };

@@ -10,7 +10,6 @@ import NavMenu from "@/components/nav/NavMenu";
 import React, {useMemo} from "react";
 import NavigationMenuTitle from "@/components/ui/navigation-menu-title";
 import SettingsMenu from "@/components/nav/SettingsMenu";
-import {ThemeToggle} from "@/components/ThemeToggle";
 
 const NavigationBarMenu = () => {
   const menu = useMemo(() => [
