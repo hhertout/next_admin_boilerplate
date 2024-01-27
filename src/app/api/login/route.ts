@@ -1,17 +1,26 @@
 import {NextResponse} from "next/server";
+import checkCsrfToken from "@/http/utils/checkCsrfToken";
 
 const headers = {
   'Content-Type': 'application/json',
 }
 
 export async function POST(request: Request) {
-  const cred: { email: string, password: string } = await request.json()
+  const {email, password, token} = await request.json()
+  try {
+    await checkCsrfToken(token, request.headers)
+  } catch (err: any) {
+    return new NextResponse(JSON.stringify({
+      message: err.message
+    }), {status: 403})
+  }
+
   try {
     const res = await fetch(`${process.env.BACKEND_URL}/api/login`, {
       method: 'POST',
       credentials: 'include',
       headers,
-      body: JSON.stringify(cred)
+      body: JSON.stringify({email, password})
     })
     if (res.status !== 200) {
       return new NextResponse(JSON.stringify({

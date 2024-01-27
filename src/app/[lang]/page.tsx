@@ -22,7 +22,7 @@ const Login = async ({params}: { params: { lang: Locale } }) => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <LoginForm $t={$t} />
+            <LoginForm $t={$t}/>
           </CardContent>
         </Card>
       </Container>
@@ -31,3 +31,4 @@ const Login = async ({params}: { params: { lang: Locale } }) => {
 };
 
 export default Login;
+

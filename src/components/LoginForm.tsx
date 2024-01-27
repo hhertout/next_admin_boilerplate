@@ -1,12 +1,13 @@
 'use client'
 
-import React, {ChangeEvent, FormEvent, useState} from 'react';
+import React, {ChangeEvent, FormEvent, useRef, useState} from 'react';
 import {useRouter} from "next/navigation";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import InputGroup from "@/components/ui/input-group";
 import {useUser} from "@/hooks/useUser";
 import SpinnerIcon from "@/components/icons/SpinnerIcon";
+import CSRFInput from "@/components/global/CSRFInput";
 
 type LoginFormProps = {
   $t?: Record<string, any | Record<string, any>>
@@ -14,6 +15,7 @@ type LoginFormProps = {
 
 const LoginForm = ({$t}: LoginFormProps) => {
   const {setUser} = useUser()
+  const tokenRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
   const [credentials, setCredentials] = useState({
     email: "",
@@ -26,14 +28,16 @@ const LoginForm = ({$t}: LoginFormProps) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCredentials({...credentials, [e.target.name]: e.target.value})
   }
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError(null)
     try {
+      const token = tokenRef.current ? tokenRef.current.value : ""
       const res = await fetch("/api/login", {
         method: 'POST',
-        body: JSON.stringify(credentials),
+        body: JSON.stringify({...credentials, token}),
         headers: {'Content-Type': 'application/json'},
         credentials: 'include'
       })
@@ -66,10 +70,12 @@ const LoginForm = ({$t}: LoginFormProps) => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <CSRFInput ref={tokenRef}/>
       <InputGroup>
         <Input
           id={"email"}
           value={credentials.email}
+          autoComplete={"email"}
           onChange={handleChange}
           name={'email'}
           type={'email'}
@@ -82,6 +88,7 @@ const LoginForm = ({$t}: LoginFormProps) => {
         <Input
           id={"password"}
           value={credentials.password}
+          autoComplete={"password"}
           onChange={handleChange}
           name={'password'}
           type={'password'}
