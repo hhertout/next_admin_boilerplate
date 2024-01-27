@@ -6,7 +6,7 @@ import {ThemeToggle} from "@/components/nav/ThemeToggle";
 import LanguagesSwitcher from "@/components/nav/LanguagesSwitcher";
 
 type NavigationBarProps = {
-  $t: Record<string, any>
+  $t?: Record<string, any>
 }
 
 const NavigationBar = ({$t}: NavigationBarProps) => {

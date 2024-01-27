@@ -11,5 +11,10 @@
     "settings": "Settings",
     "account": "Account",
     "logout": "Logout"
+  },
+  "error": {
+    "server": "The service is temporally unavailable",
+    "badRequest": "The entered data is invalid, please check your informations",
+    "notFound": "Requested data doesn't exist"
   }
 }

@@ -11,5 +11,10 @@
     "settings": "Paramètres",
     "account": "Compte",
     "logout": "Déconnexion"
+  },
+  "error": {
+    "server": "Le service n'est pas disponible",
+    "badRequest": "Les informations fournies ne sont pas correctes",
+    "notFound": "La ressource demandée n'existe pas"
   }
 }

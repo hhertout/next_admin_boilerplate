@@ -12,17 +12,17 @@ import NavigationMenuTitle from "@/components/ui/navigation-menu-title";
 import SettingsMenu from "@/components/nav/SettingsMenu";
 
 type NavigationBarMenuProps = {
-  $t: Record<string, any>
+  $t?: Record<string, any>
 }
 
 const NavigationBarMenu = ({$t}: NavigationBarMenuProps) => {
   const menu = useMemo(() => [
     {
-      label: $t.navbar.menu,
+      label: $t?.navbar.menu,
       subMenu: <NavMenu $t={$t}/>
     },
     {
-      label: $t.navbar.settings,
+      label: $t?.navbar.settings,
       subMenu: <SettingsMenu $t={$t}/>
     }
   ], [$t])

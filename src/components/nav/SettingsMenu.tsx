@@ -6,14 +6,14 @@ import {useRouter} from "next/navigation";
 import LogoutButton from "@/components/LogoutButton";
 
 type SettingsMenuProps = {
-  $t: Record<string, any>
+  $t?: Record<string, any>
 }
 
 const SettingsMenu = ({$t}: SettingsMenuProps) => {
   return (
     <div className={'p-4 w-[240px]'}>
-      <AccountButton label={$t.navbar.account}/>
-      <LogoutButton label={$t.navbar.logout}/>
+      <AccountButton label={$t?.navbar.account}/>
+      <LogoutButton label={$t?.navbar.logout}/>
       <Separator className="my-1"/>
     </div>
   );

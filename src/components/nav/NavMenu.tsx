@@ -1,7 +1,7 @@
 import React from 'react';
 
 type NavMenuProps = {
-  $t: Record<string, any>
+  $t?: Record<string, any>
 }
 
 const NavMenu = ({}: NavMenuProps) => {

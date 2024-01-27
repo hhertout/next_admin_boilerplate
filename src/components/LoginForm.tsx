@@ -9,7 +9,7 @@ import {useUser} from "@/hooks/useUser";
 import SpinnerIcon from "@/components/icons/SpinnerIcon";
 
 type LoginFormProps = {
-  $t: Record<string, any | Record<string, any>>
+  $t?: Record<string, any | Record<string, any>>
 }
 
 const LoginForm = ({$t}: LoginFormProps) => {
@@ -46,13 +46,13 @@ const LoginForm = ({$t}: LoginFormProps) => {
         })
         router.push("/admin")
       } else if (res.status === 400) {
-        setError({message: "Failed to connect : Check your information"})
+        setError({message: $t?.error.badRequest || "Failed to connect : Check your information"})
       } else if (res.status >= 500) {
-        setError({message: "The service is temporally unavailable"})
+        setError({message: $t?.error.server || "The service is temporally unavailable"})
       }
     } catch (err: any) {
       console.error(err)
-      setError({message: "The service is temporally unavailable"})
+      setError({message: $t?.error.server || "The service is temporally unavailable"})
     } finally {
       setLoading(false)
     }
@@ -73,9 +73,9 @@ const LoginForm = ({$t}: LoginFormProps) => {
           onChange={handleChange}
           name={'email'}
           type={'email'}
-          placeholder={$t.login.email}
+          placeholder={$t?.login.email || "Email"}
           className={'bg-white'}
-          aria-label={$t.login.email}
+          aria-label={$t?.login.email || "Email"}
         />
       </InputGroup>
       <InputGroup>
@@ -85,9 +85,9 @@ const LoginForm = ({$t}: LoginFormProps) => {
           onChange={handleChange}
           name={'password'}
           type={'password'}
-          placeholder={$t.login.password}
+          placeholder={$t?.login.password || "Password"}
           className={'bg-white'}
-          aria-label={$t.login.password}
+          aria-label={$t?.login.password || "Password"}
         />
       </InputGroup>
       {error && <div className={'text-sm text-red-700 text-center mt-3'}>{error.message}</div>}
@@ -96,14 +96,14 @@ const LoginForm = ({$t}: LoginFormProps) => {
         variant={'outline'}
         className={"w-full text-center mt-5 bg-gray-950 text-gray-50 hover:bg-gray-700 font-bold"}
       >
-        {$t.login.buttonLabel}
+        {$t?.login.buttonLabel || "Login"}
       </Button>
     </form>
   );
 };
 
 type LoginLoadingProps = {
-  $t: Record<string, any>
+  $t?: Record<string, any>
 }
 
 const LoginLoading = ({$t}: LoginLoadingProps) => {
@@ -111,7 +111,7 @@ const LoginLoading = ({$t}: LoginLoadingProps) => {
     <div className={"animate-spin dark:text-black"}>
       <SpinnerIcon size={24}/>
     </div>
-    <div className={'font-bold dark:text-black'}>{$t.login.loadingMessage}</div>
+    <div className={'font-bold dark:text-black'}>{$t?.login.loadingMessage || "Loading..."}</div>
   </div>
 }
 
