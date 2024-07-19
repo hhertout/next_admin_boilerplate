@@ -13,8 +13,10 @@
     "logout": "Déconnexion"
   },
   "error": {
+    "error": "Erreur",
     "server": "Le service n'est pas disponible",
     "badRequest": "Les informations fournies ne sont pas correctes",
+    "invalid_credentials": "Les identifiants de connexion sont incorrects",
     "notFound": "La ressource demandée n'existe pas"
   }
 }

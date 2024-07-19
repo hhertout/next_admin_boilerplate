@@ -13,8 +13,10 @@
     "logout": "Logout"
   },
   "error": {
+    "error": "Error",
     "server": "The service is temporally unavailable",
     "badRequest": "The entered data is invalid, please check your informations",
+    "invalid_credentials": "Invalid credentials",
     "notFound": "Requested data doesn't exist"
   }
 }
